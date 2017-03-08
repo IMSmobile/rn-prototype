@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, Button, ActivityIndicator, StyleSheet, Image } from 'react-native';
 import { Buffer } from 'buffer';
 
 export default class Login extends Component {
@@ -8,7 +8,7 @@ export default class Login extends Component {
     username: null,
     password: null,
     isLoggingIn: false,
-    error: false,
+    status: false,
   }
 
   onChangeServer = (server) => {
@@ -16,9 +16,9 @@ export default class Login extends Component {
     const ok = serverRegex.exec(server);
     if (ok) {
       this.setState({ server });
-      this.setState({ error: false });
+      this.setState({ status: false });
     } else {
-      this.setState({ error: 'wrong server URL format' });
+      this.setState({ status: 'wrong server URL format' });
     }
   }
 
@@ -29,7 +29,7 @@ export default class Login extends Component {
   logOn = async () => {
     const { server, username, password } = this.state;
 
-    this.setState({ isLoggingIn: true, error: false })
+    this.setState({ isLoggingIn: true, status: null })
     const authHash = new Buffer(username + ':' + password).toString('base64');
     const reqOptions = {
       method: 'GET',
@@ -47,46 +47,125 @@ export default class Login extends Component {
           'password': password,
         });
       } else {
-        this.setState({ isLoggingIn: false, error: "Login Failed (Status " + res.status + ")" })
+        this.setState({ isLoggingIn: false, status: "Login Failed (Status " + res.status + ")" })
       }
     } catch (e) {
-      this.setState({ isLoggingIn: false, error: e.toString() })
+      this.setState({ isLoggingIn: false, status: e.toString() })
     }
   }
 
   render() {
-    const { isLoggingIn, error, server, username, password } = this.state;
+    const { isLoggingIn, status, server, username, password } = this.state;
 
     return (
-      <View>
-        <Text>Login:</Text>
-        <TextInput
-          placeholder="Server"
-          defaultValue={server}
-          autoCorrect={false}
-          editable={!isLoggingIn}
-          onChangeText={this.onChangeServer} />
-        <TextInput
-          placeholder="Username"
-          autoCorrect={false}
-          editable={!isLoggingIn}
-          onChangeText={this.onChangeUser} />
-        <TextInput
-          placeholder="Password"
-          autoCorrect={false}
-          secureTextEntry={true}
-          editable={!isLoggingIn}
-          onChangeText={this.onChangePassword} />
-        <Button
-          disabled={isLoggingIn || !server || !username || !password}
-          onPress={this.logOn}
-          title="go"
-        />
-        <Text>{error}</Text>
-        <View>
-          <ActivityIndicator animating={isLoggingIn} />
+      <View style={styles.container}>
+        <View style={styles.logoContainer}>
+          <Image
+            style={styles.logo}
+            source={require('./logo.png')}
+          />
+          <Text style={styles.title}>ims Prototype built with React Native</Text>
+        </View>
+        <View style={styles.statusContainer}>
+          <ActivityIndicator
+            animating={isLoggingIn}
+            color='rgba(255,255,255,0.7)'
+            size='large'
+          />
+          <Text style={styles.status}>{status}</Text>
+        </View>
+        <View style={styles.formContainer}>
+          <TextInput
+            placeholder="Server"
+            defaultValue={server}
+            autoCorrect={false}
+            autoCapitalize='none'
+            returnKeyType='next'
+            editable={!isLoggingIn}
+            style={styles.input}
+            underlineColorAndroid='transparent'
+            placeholderTextColor='rgba(255,255,255,0.7)'
+            onSubmitEditing={() => this.usernameInput.focus()}
+            onChangeText={this.onChangeServer} />
+          <TextInput
+            placeholder="Username"
+            autoCorrect={false}
+            autoCapitalize='none'
+            returnKeyType='next'
+            editable={!isLoggingIn}
+            style={styles.input}
+            underlineColorAndroid='transparent'
+            placeholderTextColor='rgba(255,255,255,0.7)'
+            ref={(input) => this.usernameInput = input}
+            onSubmitEditing={() => this.passwordInput.focus()}
+            onChangeText={this.onChangeUser} />
+          <TextInput
+            placeholder="Password"
+            autoCorrect={false}
+            autoCapitalize='none'
+            returnKeyType='go'
+            secureTextEntry={true}
+            editable={!isLoggingIn}
+            style={styles.input}
+            underlineColorAndroid='transparent'
+            placeholderTextColor='rgba(255,255,255,0.7)'
+            ref={(input) => this.passwordInput = input}
+            onChangeText={this.onChangePassword} />
+          <Button
+            disabled={isLoggingIn || !server || !username || !password}
+            onPress={this.logOn}
+            title="Login"
+          />
         </View>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#3498db'
+  },
+  logoContainer: {
+    alignItems: 'center',
+    flexGrow: 1,
+    justifyContent: 'center'
+  },
+  logo: {
+    width: 100,
+    height: 100,
+  },
+  title: {
+    color: '#FFF',
+    marginTop: 10,
+    width: 140,
+    textAlign: 'center',
+    opacity: 0.6
+  },
+  formContainer: {
+    padding: 20
+  },
+  input: {
+    height: 40,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    marginBottom: 10,
+    color: '#FFF',
+    paddingHorizontal: 10,
+  },
+  button: {
+    fontWeight: '700',
+    color: '#FFF',
+  },
+  statusContainer: {
+    height: 50,
+    padding: 3,
+    marginBottom: 20
+  },
+  status: {
+    color: '#2c3e50',
+    fontWeight: '700',
+    textAlign: 'center',
+  }
+
+})
