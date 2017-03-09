@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, ActivityIndicator, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, Button, ActivityIndicator, StyleSheet, Image, KeyboardAvoidingView } from 'react-native';
 import { Buffer } from 'buffer';
 
 export default class Login extends Component {
@@ -58,7 +58,7 @@ export default class Login extends Component {
     const { isLoggingIn, status, server, username, password } = this.state;
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View style={styles.logoContainer}>
           <Image
             style={styles.logo}
@@ -66,14 +66,16 @@ export default class Login extends Component {
           />
           <Text style={styles.title}>ims Prototype built with React Native</Text>
         </View>
-        <View style={styles.statusContainer}>
+        { isLoggingIn &&
           <ActivityIndicator
             animating={isLoggingIn}
             color='rgba(255,255,255,0.7)'
             size='large'
           />
+        }
+        { status && 
           <Text style={styles.status}>{status}</Text>
-        </View>
+        }
         <View style={styles.formContainer}>
           <TextInput
             placeholder="Server"
@@ -117,7 +119,7 @@ export default class Login extends Component {
             title="Login"
           />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -125,26 +127,26 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#3498db'
+    backgroundColor: '#3498db',
   },
   logoContainer: {
     alignItems: 'center',
     flexGrow: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 90,
+    height: 90,
   },
   title: {
     color: '#FFF',
     marginTop: 10,
     width: 140,
     textAlign: 'center',
-    opacity: 0.6
+    opacity: 0.6,
   },
   formContainer: {
-    padding: 20
+    padding: 20,
   },
   input: {
     height: 40,
@@ -157,15 +159,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#FFF',
   },
-  statusContainer: {
-    height: 50,
-    padding: 3,
-    marginBottom: 20
-  },
   status: {
     color: '#2c3e50',
+    backgroundColor: '#e67e22',
     fontWeight: '700',
     textAlign: 'center',
+    padding: 10,
   }
-
 })
