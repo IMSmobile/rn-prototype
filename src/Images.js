@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Body, Title, Text, Button } from 'native-base';
 import AppFooter from './AppFooter.js';
 import ImagePicker from 'react-native-image-picker';
+import CameraRollPicker from 'react-native-camera-roll-picker';
 
 export default class Images extends Component {
+
+  state = {
+    selectedImages: [],
+  }
 
   captureFromImageLibrary = () => {
     ImagePicker.launchImageLibrary({}, (response) => {
@@ -18,6 +23,11 @@ export default class Images extends Component {
     });
   }
 
+  updateSelectedImages = (images, current) => {
+    this.setState({ selectedImages: images });
+    console.log(current);
+  }
+
   render() {
     return (
       <Container>
@@ -26,8 +36,13 @@ export default class Images extends Component {
         </Header>
         <Content style={{ padding: 20 }}>
           <Button onPress={this.captureFromImageLibrary}>
-            <Text>Select one Picture</Text>
+            <Text>Select single Picture</Text>
           </Button>
+          <Text>Select multiple Pictures</Text>
+          {(this.state.selectedImages.length > 0) &&
+            <Text>{"Selected " + this.state.selectedImages.length + " Pictures"}</Text>
+          }
+          <CameraRollPicker callback={this.updateSelectedImages} />
         </Content>
         <AppFooter
           imagesActive={true}

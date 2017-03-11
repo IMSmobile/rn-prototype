@@ -11,6 +11,7 @@
     "native-base": "^2.0.12",
     "react": "15.4.2",
     "react-native": "0.42.0",
+    "react-native-camera-roll-picker": "^1.1.9",
     "react-native-image-picker": "^0.26.2"
   },
   "devDependencies": {
