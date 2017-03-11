@@ -30,13 +30,16 @@ export default class Camera extends Component {
           <Body><Title>Camera</Title></Body>
         </Header>
         <Content style={{ padding: 20 }}>
-          <Text>Your latest snapshot:</Text>
-          <Image style={{ width: 150, height: 150, margin: 20 }}
-            source={{ uri: this.state.picture }} />
           <Button
             onPress={this.captureFromCamera}>
-            <Text>Snap a picture</Text>
+            <Text>Take a picture</Text>
           </Button>
+          <Text>Your latest snapshot:</Text>
+          {(this.state.picture === null) &&
+            <Text>(none yet)</Text>
+           }
+          <Image style={{ width: 150, height: 150, margin: 20 }}
+            source={{ uri: this.state.picture }} />
         </Content>
         <AppFooter
           cameraActive={true}
