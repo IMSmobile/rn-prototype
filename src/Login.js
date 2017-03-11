@@ -4,7 +4,7 @@ import { Buffer } from 'buffer';
 
 export default class Login extends Component {
   state = {
-    server: "http://mars.imagic.ch:3171/rest",
+    server: "http://sinv-56028.edu.hsr.ch/rest",
     username: null,
     password: null,
     isLoggingIn: false,
