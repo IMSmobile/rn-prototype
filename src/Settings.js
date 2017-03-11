@@ -10,7 +10,7 @@ export default class Settings extends Component {
         <Header>
           <Body><Title>Settings</Title></Body>
         </Header>
-        <Content>
+        <Content style={{ padding: 20 }}>
           <Button
             onPress={this.props.onLogoutPress}>
             <Text>Log out</Text>

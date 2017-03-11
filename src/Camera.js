@@ -29,7 +29,7 @@ export default class Camera extends Component {
         <Header>
           <Body><Title>Camera</Title></Body>
         </Header>
-        <Content>
+        <Content style={{ padding: 20 }}>
           <Text>Your latest snapshot:</Text>
           <Image style={{ width: 150, height: 150, margin: 20 }}
             source={{ uri: this.state.picture }} />
