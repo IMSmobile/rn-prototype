@@ -14,6 +14,12 @@ export default class AppFooter extends Component {
             <Text>Home</Text>
           </Button>
           <Button
+            active={this.props.cameraActive}
+            onPress={() => this.props.onFooterButtonPress('camera')} >
+            <Icon name="camera" />
+            <Text>Camera</Text>
+          </Button>
+          <Button
             active={this.props.imagesActive}
             onPress={() => this.props.onFooterButtonPress('images')} >
             <Icon name="image" />

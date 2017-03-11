@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Home from './Home.js';
+import Camera from './Camera.js';
 import Images from './Images.js';
 import Settings from './Settings.js';
 
@@ -19,6 +20,12 @@ export default class App extends Component {
         <Settings
           onFooterButtonPress={this.onFooterButtonPress}
           onLogoutPress={this.props.onLogoutPress}
+        />
+      )
+    } else if (this.state.screen === 'camera') {
+      return (
+        <Camera
+          onFooterButtonPress={this.onFooterButtonPress}
         />
       )
     } else if (this.state.screen === 'images') {

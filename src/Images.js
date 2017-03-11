@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Body, Title, Text } from 'native-base';
 import AppFooter from './AppFooter.js';
 
-export default class Home extends Component {
+export default class Images extends Component {
 
   render() {
     return (
