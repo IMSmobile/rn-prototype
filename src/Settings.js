@@ -1,4 +1,6 @@
+// @flow
 import React, { Component } from 'react';
+// $FlowFixMe
 import { Container, Header, Content, Body, Title, Button, Text } from 'native-base';
 import AppFooter from './AppFooter.js';
 

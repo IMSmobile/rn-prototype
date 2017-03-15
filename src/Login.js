@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, ActivityIndicator, StyleSheet, Image, KeyboardAvoidingView } from 'react-native';
 import ImsRequest from './ImsRequest.js';
@@ -5,29 +6,29 @@ import ImsRequest from './ImsRequest.js';
 export default class Login extends Component {
   state = {
     server: "http://sinv-56028.edu.hsr.ch/rest",
-    username: null,
-    password: null,
+    username: '',
+    password: '',
     isLoggingIn: false,
-    status: false,
+    status: '',
   }
 
-  onChangeServer = (server) => {
+  onChangeServer = (server: string) => {
     const serverRegex = new RegExp('^https?://', 'i');
     const ok = serverRegex.exec(server);
     if (ok) {
       this.setState({ server });
-      this.setState({ status: false });
+      this.setState({ status: '' });
     } else {
       this.setState({ status: 'wrong server URL format' });
     }
   }
 
-  onChangeUser = (username) => this.setState({ username });
+  onChangeUser = (username: string) => this.setState({ username });
 
-  onChangePassword = (password) => this.setState({ password })
+  onChangePassword = (password: string) => this.setState({ password })
 
   logOn = async () => {
-    this.setState({ isLoggingIn: true, status: null })
+    this.setState({ isLoggingIn: true, status: '' })
 
     const credentials = {
           'server': this.state.server,
@@ -67,7 +68,7 @@ export default class Login extends Component {
             size='large'
           />
         }
-        { status && 
+        { status.length > 0 && 
           <Text style={styles.status}>{status}</Text>
         }
         <View style={styles.formContainer}>
@@ -81,6 +82,7 @@ export default class Login extends Component {
             style={styles.input}
             underlineColorAndroid='transparent'
             placeholderTextColor='rgba(255,255,255,0.7)'
+            // $FlowFixMe
             onSubmitEditing={() => this.usernameInput.focus()}
             onChangeText={this.onChangeServer} />
           <TextInput
@@ -92,7 +94,9 @@ export default class Login extends Component {
             style={styles.input}
             underlineColorAndroid='transparent'
             placeholderTextColor='rgba(255,255,255,0.7)'
+            // $FlowFixMe
             ref={(input) => this.usernameInput = input}
+            // $FlowFixMe
             onSubmitEditing={() => this.passwordInput.focus()}
             onChangeText={this.onChangeUser} />
           <TextInput
@@ -105,6 +109,7 @@ export default class Login extends Component {
             style={styles.input}
             underlineColorAndroid='transparent'
             placeholderTextColor='rgba(255,255,255,0.7)'
+            // $FlowFixMe
             ref={(input) => this.passwordInput = input}
             onChangeText={this.onChangePassword} />
           <Button

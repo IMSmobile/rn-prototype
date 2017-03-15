@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
 import App from './App.js';
@@ -33,6 +34,7 @@ export default class LoginSwitch extends Component {
     }
   }
 
+  // $FlowFixMe
   saveCredentials = async (credentials) => {
     const json = JSON.stringify(credentials);
     if (json) {
@@ -54,7 +56,7 @@ export default class LoginSwitch extends Component {
     }
   }
 
-  componentWillMount = async () => {
+  componentWillMount () {
     this.loadCredentials();
   }
 

@@ -5,7 +5,7 @@ Progress is tracked in [IMSmobile/app/issue/5](https://github.com/IMSmobile/app/
 
 ## Setup
 Basic Setup according to [Install React Native](https://facebook.github.io/react-native/releases/next/docs/getting-started.html).  
-As IDE I'll try out [Visual Studio Code](https://code.visualstudio.com/) with the [React Native Tools](https://marketplace.visualstudio.com/items?itemName=vsmobile.vscode-react-native) extension.
+As IDE I'll try out [Visual Studio Code](https://code.visualstudio.com/) with the [React Native Tools](https://marketplace.visualstudio.com/items?itemName=vsmobile.vscode-react-native) and [Flow Language Support](https://marketplace.visualstudio.com/items?itemname=flowtype.flow-for-vscode) extension.
 
 ## Inspiration
 Fundamentals: http://www.reactnativeexpress.com/  
