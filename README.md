@@ -11,3 +11,46 @@ As IDE I'll try out [Visual Studio Code](https://code.visualstudio.com/) with th
 Fundamentals: http://www.reactnativeexpress.com/  
 Login Navigation:  https://scotch.io/tutorials/react-native-app-with-authentication-and-user-management-in-15-minutes  
 Login Screen Design: https://www.youtube.com/watch?v=1xu1eeRCPEk  
+Style: https://github.com/facebook/react-native/blob/master/CONTRIBUTING.md#style-guide
+
+## Playground
+https://sketch.expo.io/
+
+## Package Catalog
+https://js.coach/react-native
+
+## Ecosystem evaluation
+
+### Name global players using it (req 53)  
+Based on the [Showcase](https://facebook.github.io/react-native/showcase.html) the big ones are Facebook with Instagram and Airbnb. But parts of their apps are contain React Native, most ist still written in the native language.
+Lots of smaller devs are using it for very fast development speed and ease of development. Generally there currently seems to be huge momentum in the React ecosystems, see for example [React VR](https://facebookincubator.github.io/react-vr/).
+
+### Challenge documentation: Report on how useful it was when developing prototype app, ist there a upgrade guide, do example work (try three)
+The official docs could be better: a few pages are very minimalistic and some examples use additional things which are not relevant for the example.
+
+The style of code can be wildly different, some prefer classes and more imperative code, while others use functions everywhere. This is more of a general JavaScript issue.
+
+### Challenge community: how useful were the search results (req 52)
+Lots of community learning content. Some error messages where too generic to be useful. One has to learn to distinguish between JavaScript, React and React Native and Tooling-Errors to find a possible solution.
+
+### Calculate expected financial cost for project (req 50)
+React Native is licensed under BSD with some [special protection for Facebook](
+https://arielelkin.github.io/articles/why-im-not-a-react-native-developer.html#patently-daunting). A lot of services in the ecosystem are vying for marketshare and are or may be using a freemium model. This may lead to recurring financial costs, depending on the amount of services one wants to depend on.
+
+Some Examples
+- [Expo](https://expo.io/)
+- [Appetize.io](https://appetize.io/)
+
+### Apps can also run in a Browser (req 3)
+Yes, with third-party projects like [react-native-web](https://github.com/necolas/react-native-web), which also lists [similar projects](https://github.com/necolas/react-native-web#related-projects). Although it may make more sense to develop a webpage in React and not in React Native.
+
+### Has been shown to work with CI and CD (req 9, 10)
+#### CI
+The React Native Project itself runs extensive tests on [Travis](https://travis-ci.org/facebook/react-native/) and [Circle](https://circleci.com/gh/facebook/react-native) on every PR.
+
+A random [example PR](https://github.com/facebook/react-native/pull/12948) leads to these two CI builds
+- https://travis-ci.org/facebook/react-native/builds/211286556
+- https://circleci.com/gh/facebook/react-native/16607
+
+#### CD
+Can be done with [CodePush](https://microsoft.github.io/code-push/docs/react-native.html) or similar services.
