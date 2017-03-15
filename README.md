@@ -12,6 +12,7 @@ Fundamentals: http://www.reactnativeexpress.com/
 Login Navigation:  https://scotch.io/tutorials/react-native-app-with-authentication-and-user-management-in-15-minutes  
 Login Screen Design: https://www.youtube.com/watch?v=1xu1eeRCPEk  
 Style: https://github.com/facebook/react-native/blob/master/CONTRIBUTING.md#style-guide
+Flow: https://medium.com/react-native-training/getting-started-with-react-native-and-flow-d40f55746809
 
 ## Playground
 https://sketch.expo.io/

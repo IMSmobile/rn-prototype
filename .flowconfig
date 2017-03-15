@@ -14,6 +14,10 @@
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
 
+; Ignore native-base and all other nodes modules
+; See for ex. https://github.com/GeekyAnts/NativeBase/issues/633
+.*/node_modules/.*
+
 [include]
 
 [libs]
