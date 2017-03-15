@@ -54,9 +54,11 @@ export default class LoginSwitch extends Component {
     }
   }
 
+  componentWillMount = async () => {
+    this.loadCredentials();
+  }
 
   render() {
-    this.loadCredentials();
     if (!this.state.isLoggedIn) {
       return <Login
         onLoginPress={(credentials) => this.saveCredentials(credentials)}
