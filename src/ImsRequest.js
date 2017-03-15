@@ -2,10 +2,10 @@ import { Buffer } from 'buffer';
 
 export default class ImsRequest {
 
-  static buildHeader(method, username, password) {
+  static buildRequest(method, username, password) {
     const authHash = new Buffer(username + ':' + password).toString('base64');
     return {
-      method: 'GET',
+      method: method,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + authHash,
@@ -15,13 +15,13 @@ export default class ImsRequest {
 
   static async tryLogin(credentials) {
     const { server, username, password } = credentials;
-    const reqOptions = this.buildHeader('GET', username, password);
+    const reqOptions = this.buildRequest('GET', username, password);
     return await fetch(server, reqOptions);
   }
 
   static async getVersion(credentials) {
     const { server, username, password } = credentials;
-    const reqOptions = this.buildHeader('GET', username, password);
+    const reqOptions = this.buildRequest('GET', username, password);
 
     try {
       const res = await fetch(server, reqOptions);
