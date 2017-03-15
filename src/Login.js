@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, ActivityIndicator, StyleSheet, Image, KeyboardAvoidingView } from 'react-native';
-import { Buffer } from 'buffer';
+import ImsRequest from './ImsRequest.js';
 
 export default class Login extends Component {
   state = {
@@ -27,25 +27,19 @@ export default class Login extends Component {
   onChangePassword = (password) => this.setState({ password })
 
   logOn = async () => {
-    const { server, username, password } = this.state;
-
     this.setState({ isLoggingIn: true, status: null })
-    const authHash = new Buffer(username + ':' + password).toString('base64');
-    const reqOptions = {
-      method: 'GET',
-      headers: {
-        'Authorization': "Basic " + authHash,
-      },
+
+    const credentials = {
+          'server': this.state.server,
+          'username': this.state.username,
+          'password': this.state.password,
     }
+
     try {
-      const res = await fetch(server, reqOptions);
+      const res = await ImsRequest.tryLogin(credentials);
       if (res.ok) {
         this.setState({ isLoggingIn: false });
-        this.props.onLoginPress({
-          'server': server,
-          'username': username,
-          'password': password,
-        });
+        this.props.onLoginPress(credentials);
       } else {
         this.setState({ isLoggingIn: false, status: "Login Failed (Status " + res.status + ")" })
       }
