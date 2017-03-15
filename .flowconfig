@@ -14,9 +14,11 @@
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
 
-; Ignore native-base and all other nodes modules
+; Ignore native-base and a few other failing modules
 ; See for ex. https://github.com/GeekyAnts/NativeBase/issues/633
-.*/node_modules/.*
+.*/node_modules/native-base/.*
+.*/node_modules/react-native-easy-grid/.*
+.*/node_modules/react-native-keyboard-aware-scroll-view/.*
 
 [include]
 
