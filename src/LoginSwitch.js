@@ -35,11 +35,13 @@ export default class LoginSwitch extends Component {
 
   saveCredentials = async (credentials) => {
     const json = JSON.stringify(credentials);
-    try {
-      await AsyncStorage.setItem(STORAGE_KEY, json)
-      this.setState({ isLoggedIn: true })
-    } catch (e) {
-      console.error('Failed to save credentials.')
+    if (json) {
+      try {
+        await AsyncStorage.setItem(STORAGE_KEY, json)
+        this.setState({ isLoggedIn: true })
+      } catch (e) {
+        console.error('Failed to save credentials.')
+      }
     }
   }
 
