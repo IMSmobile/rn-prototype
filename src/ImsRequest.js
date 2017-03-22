@@ -27,7 +27,9 @@ export default class ImsRequest {
       const res = await fetch(server, reqOptions);
       if (res.ok) {
         const data = await res.json();
-        const infoUrl = data.links.filter(links => links.link === 'info')[0].dataHref;
+        const selfHref = data.navigation.selfHref;
+        const infoHref = data.links.filter(links => links.link === 'info')[0].dataHref;
+        const infoUrl = infoHref.replace(selfHref, server);
         const infoRes = await fetch(infoUrl, reqOptions);
         const info = await infoRes.json();
         return info.version;

@@ -5,7 +5,7 @@ import ImsRequest from './ImsRequest.js';
 
 export default class Login extends Component {
   state = {
-    server: "http://sinv-56028.edu.hsr.ch/rest",
+    server: "https://sinv-56028.edu.hsr.ch/rest",
     username: '',
     password: '',
     isLoggingIn: false,
