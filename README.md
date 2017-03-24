@@ -55,3 +55,29 @@ A random [example PR](https://github.com/facebook/react-native/pull/12948) leads
 
 #### CD
 Can be done with [CodePush](https://microsoft.github.io/code-push/docs/react-native.html) or similar services.
+
+## Additional Requirements
+
+### Https Communication (req 14)
+Yes, implemented with prototype.
+
+### Dynamic Fields (req 21)
+Yes, implemented with prototype.
+
+### Pin Code Protection (req 22)
+**No**, but could probably be implemented in native code ([Android Docs](https://developer.android.com/work/device-management-policy.html)).
+
+### Loading Icon (req 23)
+Yes, implemented with prototype on login screen.
+
+### Error Handling (req 24)
+Yes, implemented with prototype on login screen.
+
+### Lazy Loading of List (Performance) (req 25)
+Yes, with [ListView](https://facebook.github.io/react-native/docs/listview.html), not implemented/tested.
+
+### Async Uploading (App Switch) (req 26)
+Yes, with packages like [react-native-background-upload](https://github.com/Vydia/react-native-background-upload), not implemented/tested.
+
+### Network Connection Close (req 27)
+Yes, with normal JavaScript methods (Promises).
